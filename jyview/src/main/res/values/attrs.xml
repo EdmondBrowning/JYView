@@ -5,7 +5,7 @@
         <attr name="visible_tab_count"/>
     </declare-styleable>
 
-    <declare-styleable name="XZFlowLayout">
+    <declare-styleable name="JYFlowLayout">
         <attr name="lineSpacing" format="dimension" />
         <attr name="maxLine" format="integer" />
         <attr name="marginLeftAndRight" format="dimension"/>

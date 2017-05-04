@@ -21,7 +21,7 @@ import com.edmond.jyview.R;
 /**
  * Created by edmond on 16-4-12.
  */
-public class XZIndicator extends LinearLayout{
+public class JYIndicator extends LinearLayout{
     private Paint paint;
     private Path path;
     private int triangleWidth;
@@ -36,7 +36,7 @@ public class XZIndicator extends LinearLayout{
 
     private ViewPager viewPager;
 
-    public XZIndicator(Context context, AttributeSet attrs) {
+    public JYIndicator(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Indicator);
@@ -56,7 +56,7 @@ public class XZIndicator extends LinearLayout{
         paint.setPathEffect(new CornerPathEffect(3));
     }
 
-    public XZIndicator(Context context) {
+    public JYIndicator(Context context) {
         this(context, null);
     }
 

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.qiqi.xznview.R;
+import com.edmond.jyview.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by taofangxin on 16/4/16.
  */
-public class XZFlowLayout extends ViewGroup {
+public class JYFlowLayout extends ViewGroup {
     private Context mContext;
     private int usefulWidth;
     private int lineSpacing = 0;
@@ -31,7 +31,8 @@ public class XZFlowLayout extends ViewGroup {
     private boolean showAll = true;
     private boolean isShow=false;
     private OnItemClickListener onItemClickListener;
-    private int itemBackgroundResource;
+    private int itemBackgroundResource = R.drawable.bg_tag;
+    private int textColorResource = R.color.slide;
 
     private int lineCount = 0;
     private int showNum = 0;
@@ -44,23 +45,23 @@ public class XZFlowLayout extends ViewGroup {
         void OnItemClick(View view);
     }
 
-    public XZFlowLayout(Context context) {
+    public JYFlowLayout(Context context) {
         this(context, null);
     }
 
-    public XZFlowLayout(Context context, AttributeSet attrs) {
+    public JYFlowLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public XZFlowLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public JYFlowLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
         TypedArray mTypedArray = context.obtainStyledAttributes(attrs,
-                R.styleable.XZFlowLayout);
+                R.styleable.JYFlowLayout);
         lineSpacing = mTypedArray.getDimensionPixelSize(
-                R.styleable.XZFlowLayout_lineSpacing, 0);
-        maxLine = mTypedArray.getInt(R.styleable.XZFlowLayout_maxLine,2);
-        isShow=mTypedArray.getBoolean(R.styleable.XZFlowLayout_showAll,false);
+                R.styleable.JYFlowLayout_lineSpacing, 0);
+        maxLine = mTypedArray.getInt(R.styleable.JYFlowLayout_maxLine,2);
+        isShow=mTypedArray.getBoolean(R.styleable.JYFlowLayout_showAll,false);
         if(isShow==true){
             maxLine = Integer.MAX_VALUE;
         }
@@ -78,19 +79,15 @@ public class XZFlowLayout extends ViewGroup {
         for(int i=0;i<this.textList.size();i++){
             int ranHeight = dip2px(mContext, 30);
             MarginLayoutParams lp = new MarginLayoutParams(LayoutParams.WRAP_CONTENT, ranHeight);
-            lp.setMargins(dip2px(mContext, 10), 0, dip2px(mContext, 10), 0);
+            lp.setMargins(dip2px(mContext, 10), dip2px(mContext, 5), dip2px(mContext, 10), dip2px(mContext, 5));
             TextView tv = new TextView(mContext);
             tv.setPadding(dip2px(mContext, 15), 0, dip2px(mContext, 15), 0);
-            tv.setTextColor(Color.parseColor("#FF3030"));
+            tv.setTextColor(getResources().getColor(textColorResource));
             tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
             tv.setText(textList.get(i));
             tv.setGravity(Gravity.CENTER_VERTICAL);
             tv.setLines(1);
-            if(itemBackgroundResource==0){
-                tv.setBackgroundResource(R.drawable.bg_tag);
-            }else {
-                tv.setBackgroundResource(itemBackgroundResource);
-            }
+            tv.setBackgroundResource(itemBackgroundResource);
             addView(tv,lp);
             hideView.add(new ViewInfo(tv,lp));
 
@@ -103,7 +100,7 @@ public class XZFlowLayout extends ViewGroup {
             });
         }
         button = new ImageView(mContext);
-        button.setBackgroundResource(R.mipmap.ic_launcher);
+        button.setBackgroundResource(R.drawable.ic_pic);
         MarginLayoutParams lp = new MarginLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         addView(button,lp);
 
@@ -120,6 +117,10 @@ public class XZFlowLayout extends ViewGroup {
 
     public void setItemBackgroundResource(int resource){
         this.itemBackgroundResource = resource;
+    }
+
+    public void setTextColorResource(int textColorResource) {
+        this.textColorResource = textColorResource;
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {

@@ -98,7 +98,7 @@ public class JYBanner extends LinearLayout implements ViewPager.OnPageChangeList
                     params.leftMargin = 5;
                     params.rightMargin = 5;
                     if(i==0){
-                        imageView.setImageResource(R.drawable.gray_radius);
+                        imageView.setImageResource(R.drawable.white_radius);
                     }else{
                         imageView.setImageResource(R.drawable.white_radius);
                     }
@@ -205,7 +205,7 @@ public class JYBanner extends LinearLayout implements ViewPager.OnPageChangeList
                 @Override
                 public void onClick(View view) {
                     if(onBannerClickListener!=null)
-                        onBannerClickListener.OnBannerClick(view,position);
+                        onBannerClickListener.OnBannerClick(view,position%banners.size());
                 }
             });
             container.addView(view);
